@@ -7,11 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaya-mamoudou/DATAGIRL_DAY_1.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaya-mamoudou/DATAGIRL_DAY_1/issues"
+  },
+  "homepage": "https://github.com/yaya-mamoudou/DATAGIRL_DAY_1#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "mongoose": "^6.6.0"
   }
 }
