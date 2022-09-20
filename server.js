@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { User } = require('./Models/UserModel');
+const { Class } = require('./models/Class.model');
 
 const app = express();
 const MONGO_URI = 'mongodb://localhost:27017/DG';
@@ -9,22 +9,17 @@ const PORT = 4000;
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.get('/users', async (req, res) => {
-	const allUsers = await User.find();
-	res.send(allUsers);
+app.get('/classes', async (req, res) => {
+	const listOfClasses = await Class.find();
+	return res.send(listOfClasses);
 });
 
-app.post('/add-user', async (req, res) => {
-	const { name, phone_number } = req.body;
-	const checkUser = await User.find({ phone_number });
+app.post('/class', async (req, res) => {
+	const { chairs, tables, students } = req.body;
 
-	if (checkUser.length > 0) {
-		return res.status(422).send('User already exist');
-	}
+	const newClass = await Class.create({ chairs, tables, students });
 
-	const user = await User.create({ name, phone_number });
-
-	res.send(user);
+	return res.send(newClass);
 });
 
 const start = () => {
