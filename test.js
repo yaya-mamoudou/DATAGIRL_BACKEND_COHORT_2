@@ -1,11 +1,9 @@
-function getImagesFromServer() {
-	return [1, 2];
-}
+const callBack = (year, callBackFunction) => {
+	callBackFunction(year);
+};
 
-async function log1() {
-	const pictures = await getImagesFromServer();
-
-	pictures.map((d) => console.log(d));
-}
-
-log1();
+callBack(1997, (yearOfBirth) => {
+	const age = 2022 - yearOfBirth;
+	console.log(age);
+	return age;
+});

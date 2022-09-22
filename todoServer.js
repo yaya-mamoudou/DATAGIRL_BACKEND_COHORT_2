@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { Todo } = require('./models/Todo.model');
+const cors = require('cors');
 const PORT = 4000;
 const MONGO_URI = 'mongodb://localhost:27017/DG';
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cors());
 
 // GET all todo items in the Database
 app.get('/get-todos', async (req, res) => {
@@ -50,7 +52,7 @@ const start = () => {
 		}
 		console.log('Connected to DB');
 	});
-	app.listen(4000, () => console.log(`Server running on Port ${PORT}`));
+	app.listen(4000, () => console.log(`Server running on Port http://localhost:${PORT}`));
 };
 
 start();
