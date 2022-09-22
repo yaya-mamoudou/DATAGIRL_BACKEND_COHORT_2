@@ -35,6 +35,14 @@ app.delete('/delete-todo/:id', async (req, res) => {
 	return res.send('Todo deleted');
 });
 
+// Update todo by ID
+app.put('/update-todo/:id', async (req, res) => {
+	const id = req.params.id;
+	const { message } = req.body;
+	const updateTodo = await Todo.findByIdAndUpdate(id, { message }, { new: true });
+	return res.json(updateTodo);
+});
+
 const start = () => {
 	mongoose.connect(MONGO_URI, (errr) => {
 		if (errr) {
