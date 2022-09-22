@@ -8,18 +8,10 @@ const PORT = 4000;
 
 app.use(express.json());
 app.use(express.urlencoded());
-
-app.get('/classes', async (req, res) => {
-	const listOfClasses = await Class.find();
-	return res.send(listOfClasses);
-});
-
-app.post('/class', async (req, res) => {
-	const { chairs, tables, students } = req.body;
-
-	const newClass = await Class.create({ chairs, tables, students });
-
-	return res.send(newClass);
+app.use(function (req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
 });
 
 const start = () => {
