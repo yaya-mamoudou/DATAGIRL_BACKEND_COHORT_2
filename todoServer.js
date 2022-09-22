@@ -21,6 +21,20 @@ app.post('/add-todo', async (req, res) => {
 	return res.json(todo);
 });
 
+// GET todo by ID
+app.get('/get-todo/:id', async (req, res) => {
+	const id = req.params.id;
+	const todo = await Todo.findById(id);
+	return res.json(todo);
+});
+
+// Delete todo by ID
+app.delete('/delete-todo/:id', async (req, res) => {
+	const id = req.params.id;
+	await Todo.findByIdAndDelete(id);
+	return res.send('Todo deleted');
+});
+
 const start = () => {
 	mongoose.connect(MONGO_URI, (errr) => {
 		if (errr) {
